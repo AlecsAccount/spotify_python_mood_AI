@@ -2,7 +2,7 @@ from nltk.corpus import wordnet
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-# Simple mood classification by keywords
+
 mood_keywords = {
     "happy": ["happy", "joyful", "excited", "smile", "good"],
     "sad": ["sad", "down", "depressed", "unhappy", "blue"],
@@ -13,10 +13,10 @@ mood_keywords = {
 }
 
 def detect_mood(user_input):
-    user_input = user_input.lower()   # make all text lowercase so matching works regardless of case
-    for mood, keywords in mood_keywords.items():   # loop through each mood and its list of keywords
-        if any(word in user_input for word in keywords):   # check if ANY keyword for that mood is found in the user’s text
-            return mood   # if found, return the mood (like "happy", "sad", etc.)
+    user_input = user_input.lower()   
+    for mood, keywords in mood_keywords.items():  
+        if any(word in user_input for word in keywords):  
+            return mood   
     return "relaxed"  # default
 
 
@@ -45,7 +45,7 @@ def get_spotify_playlist(mood):
     playlists = []
     
     for playlist in results.get('playlists', {}).get('items', []):
-        if playlist:  # make sure it's not None , which caused an error
+        if playlist:  # make sure it's not None as it caused an earlier error
             playlists.append({
                 "name": playlist.get('name', 'Unknown'),
                 "url": playlist.get('external_urls', {}).get('spotify', 'N/A')
@@ -61,4 +61,5 @@ if __name__ == "__main__":
     print(f"\nDetected mood: {mood.capitalize()}")
     print("Here are some playlists for you:\n")
     for p in playlists:
+
         print(f"{p['name']} → {p['url']}")
