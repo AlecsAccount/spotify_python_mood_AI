@@ -34,8 +34,8 @@ mood_to_spotify = {
 
 sp = spotipy.Spotify(
     auth_manager=SpotifyClientCredentials(
-        client_id="39286f7e1d7341c5a5f8e5bfcc7b0f38",
-        client_secret="6b0d8e890d5b4cada9f7ffec760e2350" 
+        client_id="YOUR ID",
+        client_secret="YOUR SECRET" 
     ))
 
 
@@ -61,4 +61,5 @@ if __name__ == "__main__":
     print(f"\nDetected mood: {mood.capitalize()}")
     print("Here are some playlists for you:\n")
     for p in playlists:
+
         print(f"{p['name']} → {p['url']}")
